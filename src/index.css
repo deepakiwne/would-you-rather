@@ -82,11 +82,11 @@ li {
   text-decoration: none;
 }
 
-.avatar {
+/* .avatar {
   height: 50px;
   border-radius: 25px;
   margin: 10px;
-}
+} */
 
 .question {
   width: 100%;
@@ -193,4 +193,11 @@ li {
   position:absolute;
   right:249px;
   top:10px; 
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
