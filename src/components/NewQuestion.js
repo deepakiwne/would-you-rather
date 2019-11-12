@@ -1,43 +1,40 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
 
     state = {
-        optionOne: '',
-        optionTwo: ''
+        optionOneText: '',
+        optionTwoText: ''
     }
 
     onOptionOne = (e) => {
         this.setState({
-            optionOne: e.target.value
+            optionOneText: e.target.value
         })
     }
     onOptionTwo = (e) => {
         this.setState({
-            optionTwo: e.target.value
+            optionTwoText: e.target.value
         })
     }
     onSubmit = (e) => {
         e.preventDefault()
     
-        const { optionOne, optionTwo } = this.state
-    
-        // todo: Add Question to Store
+        const { optionOneText, optionTwoText } = this.state
+        const { dispatch } = this.props
 
-        console.group()
-        console.log('New Question')
-        console.log('Option One: ', optionOne)
-        console.log('Option Two: ', optionTwo)
-        console.groupEnd()
+        dispatch(handleAddQuestion(optionOneText, optionTwoText))
     
         this.setState(() => ({
-            optionOne: '',
-            optionTwo: ''
+            optionOneText: '',
+            optionTwoText: ''
         }))
       }
   render() {
 
-    const { optionOne, optionTwo } = this.state
+    const { optionOneText, optionTwoText } = this.state
 
     return (
         <div className="card" style={{width: '40rem'}}>
@@ -50,7 +47,7 @@ class NewQuestion extends Component {
                     <div className='h5 mb-2'><strong>Would you rather ...</strong></div>
                     <div className="form-group">
                         <input type="text" className="form-control"
-                            value={optionOne}
+                            value={optionOneText}
                             onChange={this.onOptionOne}
                             placeholder="Enter Option One Text Here"
                             maxLength={280}/>
@@ -58,7 +55,7 @@ class NewQuestion extends Component {
                     <div className='form-group text-center h5'><strong>OR</strong></div>
                     <div className="form-group">
                         <input type="text" className="form-control"
-                            value={optionTwo}
+                            value={optionTwoText}
                             onChange={this.onOptionTwo}
                             placeholder="Enter Option Two Text Here"
                             maxLength={280} />
@@ -72,4 +69,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)
