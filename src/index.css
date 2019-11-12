@@ -175,3 +175,22 @@ li {
   font-size: 20px;
   color: #C3392A;
 }
+
+.dot {
+  height: 25px;
+  width: 35px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: green;
+  color: white;
+}
+
+.headerDivider {
+  border-left:1px solid #38546d; 
+  border-right:1px solid #16222c; 
+  height:80px;
+  position:absolute;
+  right:249px;
+  top:10px; 
+}
