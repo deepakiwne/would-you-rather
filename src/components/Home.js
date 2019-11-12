@@ -7,20 +7,20 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="unanswered-tab"
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item">
+            <a className="nav-link active" id="unanswered-tab"
               data-toggle="tab" href="#unanswered" role="tab"
               aria-controls="unanswered" aria-selected="true">Unanswered Questions</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="answered-tab"
+          <li className="nav-item">
+            <a className="nav-link" id="answered-tab"
               data-toggle="tab" href="#answered" role="tab"
               aria-controls="answered" aria-selected="false">Answered Questions</a>
           </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="unanswered" role="tabpanel" aria-labelledby="unanswered-tab">
+        <div className="tab-content" id="myTabContent">
+          <div className="tab-pane fade show active" id="unanswered" role="tabpanel" aria-labelledby="unanswered-tab">
             <ul className='dashboard-list'>
               {this.props.unanswered.map((id) => (
                 <li key={id}>
@@ -29,7 +29,7 @@ class Home extends Component {
               ))}
             </ul>
           </div>
-          <div class="tab-pane fade" id="answered" role="tabpanel" aria-labelledby="answered-tab">
+          <div className="tab-pane fade" id="answered" role="tabpanel" aria-labelledby="answered-tab">
             <ul className='dashboard-list'>
               {this.props.answered.map((id) => (
                 <li key={id}>
