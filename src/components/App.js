@@ -7,8 +7,8 @@ import Home from './Home'
 import LoadingBar from 'react-redux-loading'
 import NavBar from './NavBar'
 import NewQuestion from './NewQuestion'
-import QuestionCard from './QuestionCard'
 import LeaderBoard from './LeaderBoard'
+import QuestionPage from './QuestionPage'
 
 class App extends Component {
 
@@ -28,7 +28,7 @@ class App extends Component {
               ? null
               : <div className="row justify-content-center">
                   <Route path='/' exact component={Home} />
-                  <Route path='/questions/:id' component={QuestionCard} />
+                  <Route path='/questions/:id' component={QuestionPage} />
                   <Route path='/add' component={NewQuestion} />
                   <Route path='/leaderboard' component={LeaderBoard} />
                 </div>}
