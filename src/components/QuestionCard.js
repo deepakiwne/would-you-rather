@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatDate } from '../utils/helpers'
 
-class Question extends Component {
+class QuestionCard extends Component {
 
   toPoll = (e) => {
     e.preventDefault()
@@ -52,4 +52,4 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(QuestionCard)

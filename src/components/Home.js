@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Question from './Question'
+import QuestionCard from './QuestionCard'
 
 class Home extends Component {
 
@@ -24,7 +24,7 @@ class Home extends Component {
             <ul className='dashboard-list'>
               {this.props.unanswered.map((id) => (
                 <li key={id}>
-                  <Question id={id} />
+                  <QuestionCard id={id} />
                 </li>
               ))}
             </ul>
@@ -33,7 +33,7 @@ class Home extends Component {
             <ul className='dashboard-list'>
               {this.props.answered.map((id) => (
                 <li key={id}>
-                  <Question id={id} />
+                  <QuestionCard id={id} />
                 </li>
               ))}
             </ul>
