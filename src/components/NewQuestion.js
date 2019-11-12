@@ -2,7 +2,42 @@ import React, { Component } from 'react'
 
 class NewQuestion extends Component {
 
+    state = {
+        optionOne: '',
+        optionTwo: ''
+    }
+
+    onOptionOne = (e) => {
+        this.setState({
+            optionOne: e.target.value
+        })
+    }
+    onOptionTwo = (e) => {
+        this.setState({
+            optionTwo: e.target.value
+        })
+    }
+    onSubmit = (e) => {
+        e.preventDefault()
+    
+        const { optionOne, optionTwo } = this.state
+    
+        // todo: Add Question to Store
+
+        console.group()
+        console.log('New Question')
+        console.log('Option One: ', optionOne)
+        console.log('Option Two: ', optionTwo)
+        console.groupEnd()
+    
+        this.setState(() => ({
+            optionOne: '',
+            optionTwo: ''
+        }))
+      }
   render() {
+
+    const { optionOne, optionTwo } = this.state
 
     return (
         <div className="card" style={{width: '40rem'}}>
@@ -14,15 +49,22 @@ class NewQuestion extends Component {
                     <div className="form-text text-muted mb-4">Complete the question:</div>
                     <div className='h5 mb-2'><strong>Would you rather ...</strong></div>
                     <div className="form-group">
-                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter Option One Text Here" />
+                        <input type="text" className="form-control"
+                            value={optionOne}
+                            onChange={this.onOptionOne}
+                            placeholder="Enter Option One Text Here"
+                            maxLength={280}/>
                     </div>
                     <div className='form-group text-center h5'><strong>OR</strong></div>
                     <div className="form-group">
-                        <input type="password" className="form-control" id="exampleInputPassword1"
-                            placeholder="Enter Option Two Text Here" />
+                        <input type="text" className="form-control"
+                            value={optionTwo}
+                            onChange={this.onOptionTwo}
+                            placeholder="Enter Option Two Text Here"
+                            maxLength={280} />
                     </div>
-                    <button type="button" className="btn btn-success btn-lg btn-block">Submit</button>
+                    <button type="button" className="btn btn-success btn-lg btn-block"
+                        onClick={this.onSubmit}>Submit</button>
                 </form>
             </div>
         </div>
