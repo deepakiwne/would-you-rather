@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatDate } from '../utils/helpers'
+import Highlight from './Highlight'
+import Poll from './Poll'
+import Result from './Result'
 
 class QuestionCard extends Component {
+  
+  state = {
+    view: 'highlight'
+  }
 
   toPoll = (e) => {
     e.preventDefault()
     // todo: View Poll
+  }
+  switchView = (question, optionOne, optionTwo) => {
+    switch(this.state.view) {
+      case 'highlight':
+        return <Highlight highlight={optionOne.text} timestamp={question.timestamp}/>
+      case 'poll':
+        return <Poll optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+      default:
+        return <Result optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+    }
   }
   render() {
     const { owner, avatar, question } = this.props
@@ -17,7 +33,7 @@ class QuestionCard extends Component {
 
     // console.log(this.props)
 
-    const { optionOne } = question
+    const { optionOne, optionTwo } = question
 
     return (
       <div className='question'>
@@ -27,12 +43,7 @@ class QuestionCard extends Component {
           alt={`Avatar of ${owner}`}
           className='avatar'
         />
-        <div className='question-info'>
-            <p>Would you rather</p>
-            <p>...{optionOne.text}...</p>
-            <p>{formatDate(question.timestamp)}</p>
-            <button className='btn' onClick={this.toPoll}>View Poll</button>
-        </div>
+        {this.switchView(question, optionOne, optionTwo)}
       </div>
     )
   }
