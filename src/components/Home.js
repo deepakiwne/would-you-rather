@@ -24,7 +24,7 @@ class Home extends Component {
             <ul className='dashboard-list'>
               {this.props.unanswered.map((id) => (
                 <li key={id}>
-                  <QuestionCard id={id} />
+                  <QuestionCard id={id} highlight={true} />
                 </li>
               ))}
             </ul>
@@ -33,7 +33,7 @@ class Home extends Component {
             <ul className='dashboard-list'>
               {this.props.answered.map((id) => (
                 <li key={id}>
-                  <QuestionCard id={id} />
+                  <QuestionCard id={id} highlight={true} />
                 </li>
               ))}
             </ul>

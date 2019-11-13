@@ -5,23 +5,15 @@ import Poll from './Poll'
 import Result from './Result'
 
 class QuestionCard extends Component {
-  
-  state = {
-    view: 'highlight'
-  }
 
-  toPoll = (e) => {
-    e.preventDefault()
-    // todo: View Poll
-  }
   switchView = (question, optionOne, optionTwo) => {
-    switch(this.state.view) {
-      case 'highlight':
-        return <Highlight highlight={optionOne.text} timestamp={question.timestamp}/>
+    switch(this.props.view) {
       case 'poll':
         return <Poll optionOne={optionOne.text} optionTwo={optionTwo.text}/>
-      default:
+      case 'result':
         return <Result optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+      default:
+        return <Highlight id={this.props.id} highlight={optionOne.text} timestamp={question.timestamp}/>
     }
   }
   render() {
@@ -49,9 +41,11 @@ class QuestionCard extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions}, { id }) {
+function mapStateToProps ({authedUser, users, questions}, { id, highlight }) {
 
   const question = questions[id]
+  const ans = Object.keys(users[authedUser].answers)
+  const qus = users[authedUser].questions
 
   return {
     authedUser,
@@ -59,7 +53,12 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
     avatar: users[question.author].avatarURL,
     question: question
       ? question
-      : null
+      : null,
+    view: highlight
+          ? 'highlight'
+          : (!ans.includes(id) && !qus.includes(id)
+            ? 'poll'
+            : 'result')
   }
 }
 

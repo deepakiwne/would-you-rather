@@ -14,7 +14,7 @@ class QuestionPage extends Component {
     console.log(this.props)
 
     return (
-        <QuestionCard id={id}/>
+        <QuestionCard id={id} highlight={false}/>
     )
   }
 }
