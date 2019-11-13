@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
     withRouter
   } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
+import { unsetAuthedUser } from '../actions/authedUser'
 
 class NavBar extends Component {
 
@@ -13,7 +13,7 @@ class NavBar extends Component {
 
         // update store
         const { dispatch } = this.props
-        dispatch(setAuthedUser(null))
+        dispatch(unsetAuthedUser())
 
         // Navigate to login
         this.props.history.push('/')
@@ -40,7 +40,7 @@ class NavBar extends Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <Link to='/home' className="nav-link">
+                        <Link to='/' className="nav-link">
                             Home
                         </Link>
                     </li>

@@ -31,7 +31,7 @@ class Login extends Component {
     const logo = 'https://images-na.ssl-images-amazon.com/images/I/61C+2uhGgCL.png'
 
     if(this.state.loggedIn === true){
-        return <Redirect to='/home' />
+        return <Redirect to='/' />
     }
 
     const { users } = this.props

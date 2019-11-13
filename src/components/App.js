@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import '../App.css'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import QuestionPage from './QuestionPage'
 import Login from './Login'
+import NotFound from './NotFound'
 
 class App extends Component {
 
@@ -23,20 +24,23 @@ class App extends Component {
         <Fragment>
           <div className="container">
             <NavBar />
-            <div className='mb-4'></div>
             <LoadingBar />
-            {this.props.loading === true
-              ? 
-                <div className="row justify-content-center">
-                  <Route path='/' exact component={Login} />
-                </div>
-              : <div className="row justify-content-center">
-                  <Route path='/' exact component={Login} />
-                  <Route path='/home' component={Home} />
-                  <Route path='/questions/:id' component={QuestionPage} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={LeaderBoard} />
-                </div>}
+            <div className='mb-4'></div>
+            <div className='row justify-content-center'>
+              <Switch>
+                {this.props.loading
+                ? 
+                  <Route path='/' exact component={Login}/>
+                :
+                  <Fragment>
+                    <Route path='/' exact component={Home} />
+                    <Route path='/leaderboard' exact component={LeaderBoard} />
+                    <Route path='/add' component={NewQuestion}/>
+                    <Route path="/questions/:id" component={QuestionPage} />
+                  </Fragment>}
+                <Route component={NotFound} />
+              </Switch>
+              </div>
           </div>
         </Fragment>
       </Router>
