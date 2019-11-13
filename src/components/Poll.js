@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleAddUserAnswer } from '../actions/shared'
 
 class Poll extends Component {
 
@@ -23,6 +25,11 @@ class Poll extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     // TODO: Submit
+
+    const { id, dispatch } = this.props
+
+    dispatch(handleAddUserAnswer(id, this.state.selection === 'one' ? 'optionOne' : 'optionTwo'))
+
   }
   render() {
 
@@ -45,10 +52,18 @@ class Poll extends Component {
             {optionTwo}
           </label>
         </div>
-        <button className='btn' onClick={this.onSubmit}>Submit</button>
+        <button className='btn btn-success' onClick={this.onSubmit}>Submit</button>
       </div>
     )
   }
 }
 
-export default Poll
+function mapStateToProps ({ questions }, { id }) {
+
+  return {
+    optionOne: questions[id].optionOne.text,
+    optionTwo: questions[id].optionTwo.text
+  }
+}
+
+export default connect(mapStateToProps)(Poll)

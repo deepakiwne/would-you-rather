@@ -9,7 +9,7 @@ class QuestionCard extends Component {
   switchView = (question, optionOne, optionTwo) => {
     switch(this.props.view) {
       case 'poll':
-        return <Poll optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+        return <Poll id={this.props.id}/>
       case 'result':
         return <Result optionOne={optionOne.text} optionTwo={optionTwo.text}/>
       default:
