@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {
+    withRouter
+  } from 'react-router-dom'
+import { setAuthedUser } from '../actions/authedUser'
 
 class NavBar extends Component {
 
+    onLogout = (e) => {
+        e.preventDefault()
+
+        // update store
+        const { dispatch } = this.props
+        dispatch(setAuthedUser(null))
+
+        // Navigate to login
+        this.props.history.push('/')
+    }
   render() {
 
     const logo = 'https://images-na.ssl-images-amazon.com/images/I/61C+2uhGgCL.png'
@@ -51,7 +65,7 @@ class NavBar extends Component {
                         <img src={avatar === null ? avatarPlaceHolder : avatar}
                             alt="Avatar" className="avatar"></img>
                     </li>
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.onLogout}>Logout</button>
                 </form>
             </div>
         </nav>
@@ -67,4 +81,4 @@ function mapStateToProps ({ authedUser, users }) {
     }
   }
 
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps)(NavBar))
