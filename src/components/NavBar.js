@@ -27,10 +27,8 @@ class NavBar extends Component {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-             <Link to='/' exact className="nav-link">
-                <a className="navbar-brand" href="#">
-                    <img src={logo} width="30" height="30" alt=""/>
-                </a>
+             <Link to='/' className="nav-link navbar-brand">
+                <img src={logo} width="30" height="30" alt=""/>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +57,7 @@ class NavBar extends Component {
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <li className="nav-item">
-                        <a className="nav-link disabled" href="#">{name === null ? '' : `Hello ${name}!`}</a>
+                        <p className="nav-link disabled">{name === null ? '' : `Hello ${name}!`}</p>
                     </li>
                     <li className="nav-item">
                         <img src={avatar === null ? avatarPlaceHolder : avatar}

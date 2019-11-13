@@ -5,7 +5,7 @@ import QuestionCard from './QuestionCard'
 class QuestionPage extends Component {
 
   render() {
-    const { id, authedUser, question } = this.props
+    const { id, question } = this.props
 
     if (question === null) {
       return <p>This Question doesn't exist</p>

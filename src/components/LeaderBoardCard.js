@@ -47,7 +47,7 @@ function LeaderMedia ({ name, avatar, answered, created }) {
         <div className="media">
             <img className="align-self-center mr-3" style={{width: '100px', height: '100px'}}
                 src={avatar}
-                alt="Card image cap"/>
+                alt="User avatar"/>
             <div className="media-body">  
                 <div className="media">
                     <div className="media-body">

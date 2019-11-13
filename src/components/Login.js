@@ -50,7 +50,7 @@ class Login extends Component {
                     <div className="form-group">
                         <select className="form-control" value={this.state.value} onChange={this.onChange}>
                         {Object.keys(users).map((key) => (
-                            <option value={key}>{users[key].name}</option>
+                            <option key={key} value={key}>{users[key].name}</option>
                         ))}
                         </select>
                     </div>

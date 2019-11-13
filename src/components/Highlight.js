@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../utils/helpers'
 
 class Highlight extends Component {
 
   render() {
 
-    const { id, highlight, timestamp } = this.props
+    const { id, highlight } = this.props
 
     return (
       <div className="card " style={{width: '18rem'}}>
