@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class NavBar extends Component {
 
   render() {
 
     const logo = 'https://images-na.ssl-images-amazon.com/images/I/61C+2uhGgCL.png'
-    const userName = 'Soumya R Bhuyan'
-    const avatar = 'https://icon-library.net/images/icon-avatar/icon-avatar-6.jpg'
+    const avatarPlaceHolder = 'https://toppng.com/public/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png'
+
+    const { name, avatar } = this.props
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,16 +42,16 @@ class NavBar extends Component {
                             Leader Board
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Hello, {userName}</a>
-                    </li>
-                    <li className="nav-item">
-                        <img src={avatar}
-                            alt="Avatar" className="avatar"></img>
-                    </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+                    <li className="nav-item">
+                        <a className="nav-link disabled" href="#">{name === null ? '' : `Hello ${name}!`}</a>
+                    </li>
+                    <li className="nav-item">
+                        <img src={avatar === null ? avatarPlaceHolder : avatar}
+                            alt="Avatar" className="avatar"></img>
+                    </li>
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
                 </form>
             </div>
         </nav>
@@ -57,4 +59,12 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+function mapStateToProps ({ authedUser, users }) {
+  
+    return {
+      name: authedUser === null ? null : users[authedUser].name,
+      avatar: authedUser === null ? null : users[authedUser].avatarURL
+    }
+  }
+
+export default connect(mapStateToProps)(NavBar)
