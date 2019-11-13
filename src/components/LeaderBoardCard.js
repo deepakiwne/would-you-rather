@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 function UserCard ({ name, answered, created }) {
 
@@ -28,6 +29,7 @@ function ScoreCard ({ score }) {
 function LeaderMedia ({ name, avatar, answered, created }) {
 
     return (
+
         <div className="media">
             <img className="align-self-center mr-3" style={{width: '100px', height: '100px'}}
                 src={avatar}
@@ -37,7 +39,7 @@ function LeaderMedia ({ name, avatar, answered, created }) {
                     <div className="media-body">
                         <UserCard name={name} answered={answered} created={created} />
                     </div>
-                    <ScoreCard score={10} />
+                    <ScoreCard score={answered + created} />
                 </div>
             </div>
         </div>
@@ -48,17 +50,27 @@ class LeaderBoardCard extends Component {
 
   render() {
 
-    const { name, avatar, answered, created } = this.props
+    const { user } = this.props
 
     return (
         <div className='card' style={{width: '35rem'}}>
             <div className='card-body'>
-                <LeaderMedia name={name} avatar={avatar}
-                    answered={answered} created={created}/>
+                <LeaderMedia
+                    name={user.name}
+                    avatar={user.avatarURL}
+                    answered={Object.keys(user.answers).length} 
+                    created={user.questions.length}/>
             </div>
         </div>
     )
   }
 }
 
-export default LeaderBoardCard
+function mapStateToProps ({ users }, { id }) {
+
+    return {
+      user: users[id]
+    }
+  }
+
+export default connect(mapStateToProps)(LeaderBoardCard)
