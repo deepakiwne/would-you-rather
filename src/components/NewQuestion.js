@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/shared'
+import {
+    withRouter
+  } from 'react-router-dom'
 
 class NewQuestion extends Component {
 
@@ -31,6 +34,9 @@ class NewQuestion extends Component {
             optionOneText: '',
             optionTwoText: ''
         }))
+
+        // Navigate to home
+        this.props.history.push('/home')
       }
   render() {
 
@@ -69,4 +75,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+export default withRouter(connect()(NewQuestion))
