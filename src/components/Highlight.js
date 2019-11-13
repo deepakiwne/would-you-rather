@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 
 class Highlight extends Component {
 
-  toPoll = (e) => {
-    e.preventDefault()
-    // todo: View Poll
-  }
   render() {
 
-    const { highlight, timestamp } = this.props
+    const { id, highlight, timestamp } = this.props
 
     return (
         <div className='question-info'>
             <p>Would you rather</p>
             <p>...{highlight}...</p>
             <p>{formatDate(timestamp)}</p>
-            <button className='btn' onClick={this.toPoll}>View Poll</button>
+            <Link
+              className="btn btn-success"
+              to={`/questions/${id}`}>
+                View Poll
+            </Link>
         </div>
     )
   }
