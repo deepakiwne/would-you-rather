@@ -20,6 +20,14 @@ class QuestionCard extends Component {
         return <Highlight id={this.props.id} highlight={optionOne.text} timestamp={question.timestamp}/>
     }
   }
+  header = () => {
+    switch(this.props.view) {
+      case 'result' :
+        return <strong>Asked by {this.props.owner}</strong>
+      default :
+        return <strong>{this.props.owner} asks:</strong>
+    }
+  }
   render() {
     const { owner, avatar, question } = this.props
 
@@ -34,7 +42,7 @@ class QuestionCard extends Component {
     return (
 
       <div className="card">
-        <h6 className="card-header"><strong>{owner} Asks:</strong></h6>
+        <h6 className="card-header">{this.header()}</h6>
         <div className="card-body">
           <div className="media">
             <img className="mr-3 align-self-center"
