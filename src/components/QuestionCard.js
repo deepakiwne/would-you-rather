@@ -15,7 +15,8 @@ class QuestionCard extends Component {
           optionOneText={optionOne.text}
           optionTwoText={optionTwo.text}
           optionOneVotes={optionOne.votes.length}
-          optionTwoVotes={optionTwo.votes.length}/>
+          optionTwoVotes={optionTwo.votes.length}
+          authedUserOption={this.props.authedUserOption}/>
       default:
         return <Highlight id={this.props.id} highlight={optionOne.text} timestamp={question.timestamp}/>
     }
@@ -69,6 +70,11 @@ function mapStateToProps ({authedUser, users, questions}, { id, highlight }) {
     authedUser,
     owner: users[question.author].name,
     avatar: users[question.author].avatarURL,
+    authedUserOption: question.optionOne.votes.includes(authedUser)
+      ? 1 
+      : question.optionTwo.votes.includes(authedUser)
+        ? 2
+        : 0,
     question: question
       ? question
       : null,

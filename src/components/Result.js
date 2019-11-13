@@ -20,6 +20,21 @@ function ResultCard ({ option, votes, totalVotes, percent, color, textColor }) {
 
 class Result extends Component {
 
+  getColor = (option) => {
+    if(option === this.props.authedUserOption) {
+      return '#E8F5E9'
+    } else {
+      return ''
+    }
+  }
+
+  getTextColor = (option) => {
+    if(option === this.props.authedUserOption) {
+      return '#00796b'
+    } else {
+      return ''
+    }
+  }
   render() {
 
     const { optionOneText, optionTwoText, optionOneVotes, optionTwoVotes } = this.props
@@ -36,13 +51,15 @@ class Result extends Component {
             votes={optionOneVotes}
             totalVotes={optionOneVotes + optionTwoVotes}
             percent={optionOnePercent}
-            color={'#E8F5E9'}
-            textColor={'#00796b'}/>
+            color={this.getColor(1)}
+            textColor={this.getTextColor(1)}/>
           <ResultCard
             option={optionTwoText}
             votes={optionTwoVotes}
             totalVotes={optionOneVotes + optionTwoVotes}
-            percent={optionTwoPercent}/>
+            percent={optionTwoPercent}
+            color={this.getColor(2)}
+            textColor={this.getTextColor(2)}/>
         </div>
       </div>
     )
