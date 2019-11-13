@@ -32,14 +32,20 @@ class QuestionCard extends Component {
     const { optionOne, optionTwo } = question
 
     return (
-      <div className='question'>
-        <p>{owner} asks:</p>
-        <img
-          src={avatar}
-          alt={`Avatar of ${owner}`}
-          className='avatar'
-        />
-        {this.switchView(question, optionOne, optionTwo)}
+
+      <div className="card">
+        <h6 className="card-header"><strong>{owner} Asks:</strong></h6>
+        <div className="card-body">
+          <div className="media">
+            <img className="mr-3 align-self-center"
+              style={{width: '100px', height: '100px'}}
+              src={avatar}
+              alt={`Avatar of ${owner}`}/>
+            <div className="media-body">
+              {this.switchView(question, optionOne, optionTwo)}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

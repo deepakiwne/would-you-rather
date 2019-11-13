@@ -13,18 +13,15 @@ class Poll extends Component {
     this.setState({
       selection: 'one'
     })
-    console.log('onOne')
   }
   onTwo = (e) => {
     e.preventDefault()
     this.setState({
       selection: 'two'
     })
-    console.log('onTwo')
   }
   onSubmit = (e) => {
     e.preventDefault()
-    // TODO: Submit
 
     const { id, dispatch } = this.props
 
@@ -36,23 +33,26 @@ class Poll extends Component {
     const { optionOne, optionTwo } = this.props
 
     return (
-      <div>
-        <p>Would you rather ...</p>
-        <div className="form-check">
-          <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-            value={this.state.selection} onChange={this.onOne}/>
-          <label className="form-check-label" htmlFor="exampleRadios1">
-            {optionOne}
-          </label>
+
+      <div className="card" style={{width: '18rem'}}>
+        <div className="card-body">
+          <h5 className="card-title mb-4" style={{fontSize: 20, fontWeight: 'bold'}}>Would you rather ...</h5>
+          <div className="form-check">
+            <input className="form-check-input" type="radio"
+              value={this.state.selection} onChange={this.onOne}/>
+            <label className="card-subtitle mb-2">
+              {optionOne}
+            </label>
+          </div>
+          <div className="form-check">
+            <input className="form-check-input" type="radio"
+              value={this.state.selection} onChange={this.onTwo}/>
+            <label className="card-subtitle mb-2">
+              {optionTwo}
+            </label>
+          </div>
+          <button className='mt-3 btn btn-success btn-block' onClick={this.onSubmit}>Submit</button>
         </div>
-        <div className="form-check">
-          <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-            value={this.state.selection} onChange={this.onTwo}/>
-          <label className="form-check-label" htmlFor="exampleRadios2">
-            {optionTwo}
-          </label>
-        </div>
-        <button className='btn btn-success' onClick={this.onSubmit}>Submit</button>
       </div>
     )
   }

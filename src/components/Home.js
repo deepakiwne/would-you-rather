@@ -6,7 +6,8 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+    <div className='card'>
+      <div className='card-body'>
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item">
             <a className="nav-link active" id="unanswered-tab"
@@ -40,6 +41,7 @@ class Home extends Component {
           </div>
         </div>
       </div>
+    </div>
     )
   }
 }

@@ -4,11 +4,25 @@ import { connect } from 'react-redux'
 function UserCard ({ name, answered, created }) {
 
     return (
-        <div className="card" style={{width: '18rem'}}>
+        <div className="card" style={{width: '16rem'}}>
             <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <p className="card-text">Answered Questions {answered}</p>
-                <p className="card-text">Created Questions {created}</p>
+                <h5 className="card-title" style={{fontWeight: 'bold'}}>{name}</h5>
+                <div>
+                    <span className='font-weight-normal' style={{fontSize: 15}}> 
+                        Answered Questions
+                    </span>
+                    <span className='float-right pr-2 font-weight-normal' style={{fontSize: 15}}>
+                        {answered}
+                    </span>
+                </div>
+                <div>
+                    <span className='font-weight-normal' style={{fontSize: 15}}> 
+                        Created Questions
+                    </span>
+                    <span className='float-right pr-2 font-weight-normal' style={{fontSize: 15}}>
+                        {created}
+                    </span>
+                </div>
             </div>
         </div>
     )
@@ -17,10 +31,10 @@ function UserCard ({ name, answered, created }) {
 function ScoreCard ({ score }) {
 
     return (
-        <div className="card align-self-center" style={{width: '6rem'}}>
-            <h6 className="card-header">Score</h6>
+        <div className="card align-self-center" style={{width: '5rem'}}>
+            <h6 className="card-header" style={{fontSize: 14}}>Score</h6>
             <div className="card-body">
-                <span className='dot'>{score}</span>
+                <button className='dot' style={{fontSize: 16}}>{score}</button>
             </div>
         </div>
     )
@@ -53,7 +67,7 @@ class LeaderBoardCard extends Component {
     const { user } = this.props
 
     return (
-        <div className='card' style={{width: '35rem'}}>
+        <div className='card' style={{width: '32rem'}}>
             <div className='card-body'>
                 <LeaderMedia
                     name={user.name}

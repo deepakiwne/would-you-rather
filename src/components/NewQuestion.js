@@ -43,7 +43,7 @@ class NewQuestion extends Component {
             </div>
             <div className="card-body">
                 <form>
-                    <div className="form-text text-muted mb-4">Complete the question:</div>
+                    <div className="form-text mb-4">Complete the question:</div>
                     <div className='h5 mb-2'><strong>Would you rather ...</strong></div>
                     <div className="form-group">
                         <input type="text" className="form-control"

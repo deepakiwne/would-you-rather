@@ -9,16 +9,17 @@ class Highlight extends Component {
     const { id, highlight, timestamp } = this.props
 
     return (
-        <div className='question-info'>
-            <p>Would you rather</p>
-            <p>...{highlight}...</p>
-            <p>{formatDate(timestamp)}</p>
-            <Link
-              className="btn btn-success"
-              to={`/questions/${id}`}>
-                View Poll
-            </Link>
+      <div className="card " style={{width: '18rem'}}>
+        <div className="card-body">
+          <h5 className="card-title">Would you rather</h5>
+          <h6 className="card-subtitle mb-2 text-muted">...{highlight}...</h6>
+          <Link
+            className="btn btn-outline-success btn-block"
+            to={`/questions/${id}`}>
+              View Poll
+          </Link>
         </div>
+      </div>
     )
   }
 }
