@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-function ResultCard ({ option, percent, votes, totalVotes }) {
+function ResultCard ({ option, votes, totalVotes, percent }) {
 
   return (
     <div className="card mb-3" style={{width: '18rem'}}>
@@ -22,13 +22,23 @@ class Result extends Component {
 
   render() {
 
-    const { optionOne, optionTwo } = this.props
+    const { optionOneText, optionTwoText, optionOneVotes, optionTwoVotes } = this.props
+    const optionOnePercent = optionOneVotes + optionTwoVotes === 0 ? 0 : ((optionOneVotes * 100)/(optionOneVotes + optionTwoVotes)).toFixed(1)
+    const optionTwoPercent = optionOneVotes + optionTwoVotes === 0 ? 0 : ((optionTwoVotes * 100)/(optionOneVotes + optionTwoVotes)).toFixed(1)
 
     return (
       <div className='question-info'>
         <p>Results</p>
-        <ResultCard option={optionOne} votes={1} totalVotes={4} percent={25} />
-        <ResultCard option={optionTwo} votes={3} totalVotes={4} percent={75} />
+        <ResultCard
+          option={optionOneText}
+          votes={optionOneVotes}
+          totalVotes={optionOneVotes + optionTwoVotes}
+          percent={optionOnePercent}/>
+        <ResultCard
+          option={optionTwoText}
+          votes={optionTwoVotes}
+          totalVotes={optionOneVotes + optionTwoVotes}
+          percent={optionTwoPercent}/>
       </div>
     )
   }

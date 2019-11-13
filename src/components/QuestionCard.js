@@ -11,7 +11,11 @@ class QuestionCard extends Component {
       case 'poll':
         return <Poll id={this.props.id}/>
       case 'result':
-        return <Result optionOne={optionOne.text} optionTwo={optionTwo.text}/>
+        return <Result
+          optionOneText={optionOne.text}
+          optionTwoText={optionTwo.text}
+          optionOneVotes={optionOne.votes.length}
+          optionTwoVotes={optionTwo.votes.length}/>
       default:
         return <Highlight id={this.props.id} highlight={optionOne.text} timestamp={question.timestamp}/>
     }
@@ -45,7 +49,7 @@ function mapStateToProps ({authedUser, users, questions}, { id, highlight }) {
 
   const question = questions[id]
   const ans = Object.keys(users[authedUser].answers)
-  const qus = users[authedUser].questions
+  // const qus = users[authedUser].questions
 
   return {
     authedUser,
@@ -56,9 +60,7 @@ function mapStateToProps ({authedUser, users, questions}, { id, highlight }) {
       : null,
     view: highlight
           ? 'highlight'
-          : (!ans.includes(id) && !qus.includes(id)
-            ? 'poll'
-            : 'result')
+          : (!ans.includes(id) ? 'poll' : 'result')
   }
 }
 
