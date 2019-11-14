@@ -7,7 +7,8 @@ class Login extends Component {
 
   state = {
       loggedIn: false,
-      value : 'sarahedo'
+      value : 'sarahedo',
+      logo: 'https://images-na.ssl-images-amazon.com/images/I/61C+2uhGgCL.png'
   }
   onChange = (e) => {
       this.setState({
@@ -18,9 +19,7 @@ class Login extends Component {
     e.preventDefault()
 
     console.log('Sign In as user: ', this.state.value)
-
-    const { dispatch } = this.props
-    dispatch(setAuthedUser(this.state.value))
+    this.props.dispatch(setAuthedUser(this.state.value))
 
     this.setState({
         loggedIn: true
@@ -28,13 +27,13 @@ class Login extends Component {
   }
   render() {
 
-    const logo = 'https://images-na.ssl-images-amazon.com/images/I/61C+2uhGgCL.png'
-
-    if(this.state.loggedIn === true){
-        return <Redirect to='/' />
-    }
-
     const { users } = this.props
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { loggedIn } = this.state
+
+    if (loggedIn === true) {
+      return <Redirect to={from} />
+    }
 
     return (
         
@@ -45,7 +44,7 @@ class Login extends Component {
             </div>
             <div className="card-body">
                 <form>
-                    <img src={logo}
+                    <img src={this.state.logo}
                         className="rounded mx-auto d-block mb-4" style={{width: '250px', height: '250px'}} alt="Logo" />
                     <div className="form-group">
                         <select className="form-control" value={this.state.value} onChange={this.onChange}>

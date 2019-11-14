@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../App.css'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -10,7 +10,8 @@ import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import QuestionPage from './QuestionPage'
 import Login from './Login'
-import NotFound from './NotFound'
+import PrivateRoute from './PrivateRoute'
+import { empty } from '../utils/helpers'
 
 class App extends Component {
 
@@ -26,21 +27,17 @@ class App extends Component {
             <NavBar />
             <LoadingBar />
             <div className='mb-4'></div>
+            {this.props.loading
+            ? 
+              null
+            :
             <div className='row justify-content-center'>
-              <Switch>
-                {this.props.loading
-                ? 
-                  <Route path='/' exact component={Login}/>
-                :
-                  <Fragment>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/leaderboard' exact component={LeaderBoard} />
-                    <Route path='/add' component={NewQuestion}/>
-                    <Route path='/questions/:id' component={QuestionPage} />
-                  </Fragment>}
-                <Route component={NotFound} />
-              </Switch>
-              </div>
+              <Route path='/login' component={Login}/>
+              <PrivateRoute path='/' exact component={Home}/>
+              <PrivateRoute path='/add' component={NewQuestion}/>
+              <PrivateRoute path='/leaderboard' component={LeaderBoard}/>
+              <PrivateRoute path='/questions/:id' component={QuestionPage}/>
+            </div>}
           </div>
         </Fragment>
       </Router>
@@ -48,9 +45,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ questions, users }) {
   return {
-    loading: authedUser === null
+    loading: empty(questions) || empty(users)
   }
 }
 
