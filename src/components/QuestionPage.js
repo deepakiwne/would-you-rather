@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionCard from './QuestionCard'
+import NotFound from './NotFound'
 
 class QuestionPage extends Component {
 
@@ -8,7 +9,7 @@ class QuestionPage extends Component {
     const { id, question } = this.props
 
     if (question === null) {
-      return <p>This Question doesn't exist</p>
+      return <NotFound />
     }
 
     console.log(this.props)
